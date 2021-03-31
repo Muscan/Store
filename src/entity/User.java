@@ -2,36 +2,36 @@ package entity;
 
 public class User extends Person {
 
-    private String Name;
-    private String Password;
+    private String name;
+    private String password;
 
     public User(int id, String name, String password) {
         super(id);
-        Name = name;
-        Password = password;
+        this.name = name;
+        this.password = password;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "Name='" + Name + '\'' +
-                ", Password='" + Password + '\'' +
+                "Name='" + name + '\'' +
+                ", Password='" + password + '\'' +
                 '}';
     }
 }
