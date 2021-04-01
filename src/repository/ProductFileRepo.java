@@ -27,7 +27,7 @@ public class ProductFileRepo {
                         product.getPrice() + "," + product.getProduceDate());
                 bw.newLine();
             }
-            System.out.println("Produsele au fost adaugate in fisierul " + fileName);
+            System.out.println("Fisierul " + fileName + " a fost modificat :)");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,6 +54,42 @@ public class ProductFileRepo {
         else{
             System.out.println("The product " + product.getName() + " with id " + product.getId() + " already exists!");
         }
+    }
+
+    public void deleteProduct(int id){
+        try {
+            this.products.removeIf(product -> product.getId() == id);
+            this.write();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param updatedProduct - updates an object based on the new object's ID
+     */
+
+
+    public void update(Product updatedProduct){
+        for(var product : this.products){//for each produc from reapo - one by one
+
+            if(product.getId() == updatedProduct.getId()) {// if  CURRENT has the id egal
+                //with the product we will make update ->
+                //-> update all the fields
+                product.setCategory(updatedProduct.getCategory());// product tales the category of updatedProduct
+                product.setProduceDate(updatedProduct.getProduceDate());//product takes the date of updatedProduct
+                product.setPrice(updatedProduct.getPrice());//product takes the name of updatedProduct
+                product.setName(updatedProduct.getName());//product takes the name of updatedProduct
+                product.setQuantity(updatedProduct.getQuantity());
+
+
+
+                this.write();
+                return;
+            }
+        }
+        System.out.println("Object with that id does not exist");
     }
 
     public void read() {

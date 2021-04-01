@@ -7,9 +7,9 @@ public class Buyer extends User{
     private String Name;
     private LocalDate RegistrationDate;
 
-    public Buyer(int id, String name, String password, String name1, LocalDate registrationDate) {
+    public Buyer(int id, String name, String password, LocalDate registrationDate) {
         super(id, name, password);
-        Name = name1;
+        Name = name;
         RegistrationDate = registrationDate;
     }
 
