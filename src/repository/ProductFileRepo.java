@@ -7,6 +7,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProductFileRepo {
@@ -38,22 +39,18 @@ public class ProductFileRepo {
         return products;
     }
 
-    public boolean productExists(Product product){
-        for(Product p: products){
-            if(p.getId() == product.getId())
-                return true;
-        }
-        return false;
-    }
+//    public boolean productExists(Product product){
+//        for(Product p: products){
+//            if(p.getId() == product.getId())
+//                return true;
+//        }
+//        return false;
+//    }
 
     public void addProduct(Product product) {
-        if(!productExists(product)) {
-            this.products.add(product);
-            write();
-        }
-        else{
-            System.out.println("The product " + product.getName() + " with id " + product.getId() + " already exists!");
-        }
+        product.setId(getFirstAvailableId());
+        this.products.add(product);
+        write();
     }
 
     public void deleteProduct(int id){
@@ -69,11 +66,8 @@ public class ProductFileRepo {
      *
      * @param updatedProduct - updates an object based on the new object's ID
      */
-
-
     public void update(Product updatedProduct){
         for(var product : this.products){//for each produc from reapo - one by one
-
             if(product.getId() == updatedProduct.getId()) {// if  CURRENT has the id egal
                 //with the product we will make update ->
                 //-> update all the fields
@@ -83,13 +77,11 @@ public class ProductFileRepo {
                 product.setName(updatedProduct.getName());//product takes the name of updatedProduct
                 product.setQuantity(updatedProduct.getQuantity());
 
-
-
                 this.write();
                 return;
             }
         }
-        System.out.println("Object with that id does not exist");
+        System.out.println("Object with id " + updatedProduct.getId() + " does not exists");
     }
 
     public void read() {
@@ -111,5 +103,31 @@ public class ProductFileRepo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getFirstAvailableId(){
+        products.sort(new SortById());
+        int id = 1;
+        // avem produsele cu id 1 2 3 4 6 7 8
+        // tre' sa gasim id-ul 5, ca asta-i lipsa
+        for(Product product: products){
+            if(product.getId() != id)
+                return id;
+            id++;
+        }
+        return id;
+    }
+
+    public void displayProducts(){
+        for(Product product: products){
+            System.out.println(product);
+        }
+    }
+}
+
+class SortById implements Comparator<Product> {
+    @Override
+    public int compare(Product o1, Product o2) {
+        return o1.getId() - o2.getId();
     }
 }
