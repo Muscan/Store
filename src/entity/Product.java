@@ -3,6 +3,7 @@ package entity;
 import enumeration.ProductCategory;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Locale;
 
 public class Product {
@@ -16,6 +17,14 @@ public class Product {
 
     public Product(int id, String name, int quantity, ProductCategory category, float price, LocalDate productDate) {
         this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+        this.price = price;
+        this.produceDate = productDate;
+    }
+
+    public Product(String name, int quantity, ProductCategory category, float price, LocalDate productDate) {
         this.name = name;
         this.quantity = quantity;
         this.category = category;

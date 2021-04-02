@@ -72,8 +72,8 @@ public class BuyerFileRepo {
                 this.write();
                 return;
             }
-            System.out.println("Object with this id " + buyer.getId() + " does not exists");
         }
+        System.out.println("Object with id " + updatedBuyer.getId() + " does not exists");
     }
      public void read(){
          DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
