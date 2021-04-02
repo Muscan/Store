@@ -32,6 +32,3 @@ public class Main {
 //TODO add files in package file
 //TODO delete and edit
 //TODO add in MySql
-
-//TODO for Worker (Crud)
-//TODO for buyer
