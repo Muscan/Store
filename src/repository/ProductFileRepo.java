@@ -126,7 +126,9 @@ public class ProductFileRepo {
 }
 
 class SortById implements Comparator<Product> {
-    @Override
+    SortById() {
+    }
+
     public int compare(Product o1, Product o2) {
         return o1.getId() - o2.getId();
     }

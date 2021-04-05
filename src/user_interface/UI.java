@@ -5,14 +5,12 @@ import enumeration.ProductCategory;
 import repository.ProductFileRepo;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
+
 
 public class UI implements I_UI{
-    Scanner scanner = new Scanner(System.in);
-    private final ProductFileRepo fileRepo;//The repo we are using to do crud operations on
+    private ProductFileRepo fileRepo;//The repo we are using to do crud operations on
 
     public UI(ProductFileRepo fr){
         this.fileRepo = fr;
@@ -42,7 +40,7 @@ public class UI implements I_UI{
                 add("FURNITURE");
             }
         };
-
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Insert category: ");
         scanner.nextLine();
         String category = scanner.nextLine();
@@ -54,7 +52,7 @@ public class UI implements I_UI{
     }
 
     public int readInt(String message){
-
+        Scanner scanner = new Scanner(System.in);
         while(true){
             try{
                 System.out.print(message);
@@ -66,9 +64,9 @@ public class UI implements I_UI{
             }
         }
     }
-
     @Override
     public Product addProduct() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("*********** Add product functionality ***********");
         System.out.print("Insert name: ");
         scanner.nextLine();
@@ -86,8 +84,10 @@ public class UI implements I_UI{
         return new Product(name,quantity,category,price,productdate);
     }
 
+
     @Override
     public Product editProduct() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("*********** Edit product functionality ***********");
         int id = readInt("Insert id: ");
         System.out.print("Insert name: ");
@@ -108,6 +108,7 @@ public class UI implements I_UI{
 
     @Override
     public int deleteProduct() {
+        Scanner scanner = new Scanner(System.in);
         this.fileRepo.displayProducts();
         System.out.print("Insert product id: ");
         return scanner.nextInt();
@@ -171,6 +172,7 @@ public class UI implements I_UI{
 
     public void productMenu()
     {
+        Scanner scanner = new Scanner(System.in);
         boolean end = false;
         while(!end){
             displayProductMenu();
@@ -222,6 +224,7 @@ public class UI implements I_UI{
 
     @Override
     public void run() {
+        Scanner scanner = new Scanner(System.in);
         boolean end = false;
         while(!end){
             displayMainMenu();

@@ -11,12 +11,9 @@ public interface I_UI {
      */
     public Product addProduct();
 
-    public Product editProduct();
+    Product editProduct();
 
     public int deleteProduct();
 
-    /**
-     * Shows the interface to the user. Interacts with the user.
-     */
-    public void run();
+    public  void run();
 }
